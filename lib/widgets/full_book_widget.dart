@@ -11,7 +11,6 @@ class FullBookWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     getCoverPhotos(List photos) {
       List covers = [];
 
@@ -59,7 +58,7 @@ class FullBookWidget extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Container(
-        padding: const  EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -71,11 +70,10 @@ class FullBookWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                
                 Text(
                   author,
-                  style:
-                      const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Text(getPublishDate(book!.firstPublishDate),
                     style: const TextStyle(fontSize: 18)),
@@ -94,7 +92,6 @@ class FullBookWidget extends StatelessWidget {
               color: Colors.black,
             ),
             const SizedBox(height: 5),
-            
             SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: getSubjects(book!.subjects),
@@ -106,36 +103,35 @@ class FullBookWidget extends StatelessWidget {
   }
 
   getSubjects(List<String> items) {
-
     List<String> itemsFixed = items.where((item) => item.length < 50).toList();
 
     return SimpleTags(
-        content: itemsFixed,
-        wrapSpacing: 4,
-        wrapVerticalDirection: VerticalDirection.down,
-        wrapRunSpacing: 4,
-        tagContainerPadding: const EdgeInsets.all(6),
-        tagTextStyle: const TextStyle(color: Color.fromARGB(255, 57, 69, 238)),
-        tagContainerDecoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Colors.grey),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(10),
-          ),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromARGB(40, 28, 149, 10),
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: Offset(1.75, 3.5), // c
-            )
-          ],
+      content: itemsFixed,
+      wrapSpacing: 4,
+      wrapVerticalDirection: VerticalDirection.down,
+      wrapRunSpacing: 4,
+      tagContainerPadding: const EdgeInsets.all(6),
+      tagTextStyle: const TextStyle(color: Color.fromARGB(255, 57, 69, 238)),
+      tagContainerDecoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.grey),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(10),
         ),
-      );
+        boxShadow: const [
+          BoxShadow(
+            color: Color.fromARGB(40, 28, 149, 10),
+            spreadRadius: 1,
+            blurRadius: 1,
+            offset: Offset(1.75, 3.5), // c
+          )
+        ],
+      ),
+    );
 
-    // return Tags(  
-    //   itemCount: items.length, 
-    //   itemBuilder: (int index){ 
+    // return Tags(
+    //   itemCount: items.length,
+    //   itemBuilder: (int index){
     //       return Tooltip(
     //       message: items[index],
     //       child:ItemTags(
@@ -143,7 +139,7 @@ class FullBookWidget extends StatelessWidget {
     //       )
     //       );
     //   },
-    // );    
+    // );
     // return ListView.builder(
     //     shrinkWrap: true,
     //     itemCount: subjects.length,

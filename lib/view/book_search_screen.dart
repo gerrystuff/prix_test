@@ -38,13 +38,13 @@ class BooksSearchDelegate extends SearchDelegate<TileBook?> {
 
     BooksViewModel bookViewModel = Provider.of<BooksViewModel>(context);
 
-    bookViewModel.setBooks(null);
 
-    return FutureBuilder(
+    if(bookViewModel.tileBooks.isEmpty){
+        return FutureBuilder(
       future: bookViewModel.getBooks(query.trim(),getFilter()),
       builder: (_, AsyncSnapshot snapshot) {
-        if (bookViewModel.books != null) {
-          return _showBooks(bookViewModel.books);
+        if (snapshot.hasData) {
+          return _showBooks(snapshot.data);
         } else {
           return const Center(
               child: CircularProgressIndicator(
@@ -53,6 +53,11 @@ class BooksSearchDelegate extends SearchDelegate<TileBook?> {
         }
       },
     );
+    } else {
+      return _showBooks(bookViewModel.tileBooks);
+    }
+
+  
 
     // print(query);
     // return const Text('buildResults');
@@ -60,6 +65,10 @@ class BooksSearchDelegate extends SearchDelegate<TileBook?> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
+
+    BooksViewModel bookViewModel = Provider.of<BooksViewModel>(context);
+
+bookViewModel.setTileBooks([]);
     final sb = StatefulBuilder(builder: (context, setState) {
       return Padding(
         padding: const EdgeInsets.all(20.0),

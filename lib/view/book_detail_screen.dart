@@ -15,7 +15,6 @@ class BookDetailScreen extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: () async {
-        bookViewModel.setSelectedBook(null);
         return true;
       },
       child: Scaffold(
@@ -26,8 +25,8 @@ class BookDetailScreen extends StatelessWidget {
         body: FutureBuilder(
           future: bookViewModel.getBook(tileBook.key),
           builder: (_, AsyncSnapshot snapshot) {
-            if (bookViewModel.selectedBook != null) {
-              return FullBookWidget(book: bookViewModel.selectedBook,author: tileBook.authorName[0],);
+            if (snapshot.hasData) {
+              return FullBookWidget(book: snapshot.data,author: tileBook.authorName[0],);
             } else {
               return const Center(
                   child: CircularProgressIndicator(

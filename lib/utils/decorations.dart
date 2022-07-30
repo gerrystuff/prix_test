@@ -5,7 +5,7 @@ InputDecoration customInputDecoration(String hintText, [icon]) {
     var estandardBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(5.0),
       borderSide:
-          const BorderSide(color: Color.fromARGB(255, 32, 74, 245), width: 1.0),
+          const BorderSide(color: Color.fromARGB(255, 122, 122, 122), width: 1.0),
     );
 
     var errorBorder = OutlineInputBorder(

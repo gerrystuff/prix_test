@@ -1,3 +1,9 @@
+import 'dart:convert';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'domain/user.dart';
+
 class FormModel {
 
   int calculateAge(DateTime birthDate) {
@@ -16,5 +22,35 @@ class FormModel {
     }
     return age;
   }
+
+
+  Future<bool> storeUser(User user) async {
+    final prefs = await SharedPreferences.getInstance();
+    bool isSaved =  await prefs.setString('user', json.encode(user));
+
+    return isSaved;
+  }
+
+
+  Future<bool> restoreUser() async {
+  final prefs = await SharedPreferences.getInstance();
+    bool userRestored = await  prefs.remove('user');
+
+    return userRestored;
+  }
+
+
+  dynamic  getUserStored() async {
+    final prefs = await SharedPreferences.getInstance();
+    final userString = prefs.get('user');
+
+    if(userString == null){
+      return 0;
+    } else {
+      return userString;
+    }
+  } 
+
+
   
 }
